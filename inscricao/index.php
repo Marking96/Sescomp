@@ -5,8 +5,9 @@ require("../includes/funcoes.php");
 require("../includes/PHPMailer-master/PHPMailerAutoload.php");
 require('../includes/recaptcha-master/src/autoload.php');
 
-$secret = "6LetMBwTAAAAAOrhmuHdTp-J7U7fo9mczv9YNTLl";
-$siteKey = '6LetMBwTAAAAAD_E8RVJke8pgZZxZ3-ISeA9AUVj';
+$secret = "6LfeUiYTAAAAAAxZoJ8izwxlLTnrI0s7pWpEF0r6";
+$siteKey = '6LfeUiYTAAAAAJvvRnRTkuRGfhgmPaT_1T4IYkmM';
+
 
 $lang = 'pt-BR';
 $recaptcha = new \ReCaptcha\ReCaptcha($secret);
@@ -160,7 +161,7 @@ $captcha = true;
 				}
 
 
-			$msg = "Inscri��o realizada com Sucesso!";
+			$msg = "Inscrição realizada com Sucesso!";
 
 // Envio de E-mail para o participante
 
@@ -429,7 +430,7 @@ WHERE id_mapa IN (". implode(',',$mapeamento) .");");
 <script type="text/javascript" src="<?php echo $urlBase; ?>Teste/js/vendor/jquery.mask.js"></script>
 <script type="text/javascript" src="<?php echo $urlBase; ?>Teste/js/bootstrap-alert.js"></script>
 <script type="text/javascript" src="<?php echo $urlBase; ?>Teste/js/bootstrap-button.js"></script>
-<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>">
+<script src='https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>'>
             </script>
 <script type="text/javascript">
 

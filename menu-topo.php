@@ -26,13 +26,13 @@ Header
 
 
         <ul class="nav hidden-phone hidden-tablet">
-          <li><a href="<?php echo $urlBase; ?>Teste/#top">Inicio</a></li>
+          <li><a href="<?php echo $urlBase; ?>Sescomp/#top">Inicio</a></li>
           <!--<li><a href="#about">Jornada</a></li>-->
-          <li><a href="<?php echo $urlBase; ?>Teste/#programa">Programação</a></li>
+          <li><a href="<?php echo $urlBase; ?>Sescomp/#programa">Programação</a></li>
 <!--      <li><a href="#workshops">Atividades</a></li>
           <li><a href="#proposals">Palestras</a></li>-->
-          <li><a href="<?php echo $urlBase; ?>Teste#donde">Local</a></li>
-          <li><a href="<?php echo $urlBase; ?>Teste/inscricao" class="event-button">Inscrição</a></li>
+          <li><a href="<?php echo $urlBase; ?>Sescomp/#donde">Local</a></li>
+          <li><a href="<?php echo $urlBase; ?>Sescomp/inscricao" class="event-button">Inscrição</a></li>
         </ul>
         <!-- End Navigation
         =============================================== -->

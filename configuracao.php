@@ -4,7 +4,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 define(HOST, 'localhost');
 define(USER, 'root');
-define(SENHA, 'qwerty');
+define(SENHA, '');
 define(BD, 'sescomp');
 
 try{
