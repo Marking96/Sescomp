@@ -1,0 +1,5 @@
+[29-Mar-2016 06:22:39 America/Chicago] PHP Fatal error:  Call to undefined method PDOStatement::fecthObject() in /home/pad/public_html/valelivre.org/flisol/setup/index.php on line 71
+[29-Mar-2016 06:22:50 America/Chicago] PHP Fatal error:  Call to undefined method PDOStatement::fecthObject() in /home/pad/public_html/valelivre.org/flisol/setup/index.php on line 71
+[29-Mar-2016 06:24:12 America/Chicago] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/pad/public_html/valelivre.org/flisol/setup/index.php on line 72
+[29-Mar-2016 06:27:32 America/Chicago] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/pad/public_html/valelivre.org/flisol/setup/index.php on line 72
+[29-Mar-2016 09:30:27 America/Chicago] PHP Fatal error:  Call to a member function fetchObject() on a non-object in /home/pad/public_html/valelivre.org/flisol/setup/index.php on line 97
