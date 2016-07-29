@@ -376,7 +376,7 @@ if($erro) alert($msg,"error");
 						$getHorario = $pdo->query("SELECT dia as dia,MIN(inicio) as ini,max(termino) as ter FROM mapa
 WHERE id_mapa IN (". implode(',',$mapeamento) .");");
 						$horario = $getHorario->fetchObject();
-						echo $horario->dia . ' - '.  $horario->ini . ' - '. $horario->ter;
+						echo date('d/m',strtotime($horario->dia)).' - '.  date('H:i',strtotime($horario->ini)). ' as '. date('H:i',strtotime($horario->ter));
 					 ?>
 				</td>
 					<td style="text-align:center;font-size:12pt;color:#999">
