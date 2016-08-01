@@ -92,7 +92,7 @@ $captcha = true;
 		$msg = 'Algum problema com o seu CPF';
 	}elseif($hasCPF){
 		$erro = true;
-		$msg = 'Seu CPF j� foi informado. Entre em contato com a equipe do Flisol caso exista algum erro';
+		$msg = 'Seu CPF já foi informado. Entre em contato com a equipe do Flisol caso exista algum erro';
 	}elseif($captcha){
 		$erro = true;
 		$msg = 'Confirme o captcha de forma correta';
@@ -105,10 +105,10 @@ $captcha = true;
 		$msg = 'Informe pelo menos um telefone para contato';
 	}elseif(empty($cidade) || empty($uf) || empty($cep)){
 		$erro = true;
-		$msg = 'Suas informa��es de endere�os n�o foram informadas';
+		$msg = 'Suas informações de endereços não foram informadas';
 	}elseif(count($choques)){
 		$erro = true;
-		$msg = 'Existem choques de hor�rios nas oficinas selecionadas. Confira os hor�rios.';
+		$msg = 'Existem choques de horários nas oficinas selecionadas. Confira os horários.';
 	}else{
 
 		$param = array($nome,limpaCPF_CNPJ($cpf),$email,$telefone1,$cep,
