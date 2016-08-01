@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Jul-2016 às 19:23
+-- Generation Time: 01-Ago-2016 às 15:25
 -- Versão do servidor: 10.1.10-MariaDB
 -- PHP Version: 5.6.15
 
@@ -34,7 +34,7 @@ CREATE TABLE `atividades` (
   `descricao` varchar(500) NOT NULL,
   `palestrantes` varchar(50) NOT NULL,
   `vagas_disp` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `atividades`
@@ -42,7 +42,8 @@ CREATE TABLE `atividades` (
 
 INSERT INTO `atividades` (`id_atividade`, `titulo`, `vagas`, `mapeamento`, `descricao`, `palestrantes`, `vagas_disp`) VALUES
 (1, 'programação web', 40, '[1]', 'teste 1', '[1,2]', 40),
-(2, 'Programação java', 40, '[2]', 'teste 2', '[3]', 0);
+(2, 'Programação java', 40, '[2]', 'teste 2', '[3]', 0),
+(3, 'inscrições', 12, '[2]', 'teste de inscrições', '[3]', 1);
 
 -- --------------------------------------------------------
 
@@ -53,7 +54,7 @@ INSERT INTO `atividades` (`id_atividade`, `titulo`, `vagas`, `mapeamento`, `desc
 CREATE TABLE `atividade_palestrante` (
   `id_palestrante` int(11) DEFAULT NULL,
   `id_atividade` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `atividade_palestrante`
@@ -73,7 +74,7 @@ CREATE TABLE `atividade_participante` (
   `vagas_ocupadas` int(11) DEFAULT NULL,
   `id_atividade` int(11) DEFAULT NULL,
   `id_participante` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -86,15 +87,15 @@ CREATE TABLE `mapa` (
   `dia` date DEFAULT NULL,
   `inicio` time DEFAULT NULL,
   `termino` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `mapa`
 --
 
 INSERT INTO `mapa` (`id_mapa`, `dia`, `inicio`, `termino`) VALUES
-(1, '2016-07-13', '08:00:00', '10:00:00'),
-(2, '2016-07-14', '10:00:00', '12:00:00');
+(1, '2016-08-22', '08:00:00', '10:00:00'),
+(2, '2016-08-23', '10:00:00', '12:00:00');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,7 @@ INSERT INTO `mapa` (`id_mapa`, `dia`, `inicio`, `termino`) VALUES
 CREATE TABLE `mapeamento_atividade` (
   `id_mapa` int(11) DEFAULT NULL,
   `id_atividade` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,7 @@ CREATE TABLE `mapeamento_atividade` (
 CREATE TABLE `palestrante` (
   `id_palestrante` int(11) NOT NULL,
   `nome` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `palestrante`
@@ -145,11 +146,32 @@ CREATE TABLE `participante` (
   `data_nasc` date DEFAULT NULL,
   `escolaridade` varchar(50) DEFAULT NULL,
   `ocupacao` varchar(50) DEFAULT NULL,
-  `iniciativa` varchar(50) NOT NULL,
+  `iniciativa` varchar(50) DEFAULT NULL,
   `instensino` varchar(50) DEFAULT NULL,
   `Sexo` char(1) DEFAULT NULL,
   `data_cadastro` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `senha` varchar(16) NOT NULL,
+  `nome` varchar(200) NOT NULL,
+  `data_acesso` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `login`, `senha`, `nome`, `data_acesso`) VALUES
+(1, 'root', '1234', 'teste', '0000-00-00');
 
 --
 -- Indexes for dumped tables
@@ -199,6 +221,21 @@ ALTER TABLE `palestrante`
 ALTER TABLE `participante`
   ADD PRIMARY KEY (`id_participante`);
 
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

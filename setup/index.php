@@ -1,16 +1,16 @@
 <?php
 
-require("cabecalho.php");
+require("../cabecalho.php");
 require("includes/makeInput.php");
 
 if(!isset($_SESSION['idUsuario'])){
-/* Direciona para a página depois de logado */
+/* Direciona para a pï¿½gina depois de logado */
 echo '<script type="text/javascript">location = "login"</script>';
-exit;	// sai da página para n exibir o restante do documento php
+exit;	// sai da pï¿½gina para n exibir o restante do documento php
 
 }
 ?>
-<title>Inscrição - II FLISOL Vale</title>
+<title>Inscriï¿½ï¿½o - II FLISOL Vale</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -28,7 +28,7 @@ exit;	// sai da página para n exibir o restante do documento php
 							$getTotal = $pdo->query("SELECT count(id_participante) as total FROM participante");
 							$all = $getTotal->fetchObject();
 							echo $all->total;
-							 ?> Inscrições</h2>
+							 ?> Inscriï¿½ï¿½es</h2>
 							</div>
 					</div>
 
@@ -90,7 +90,7 @@ google.charts.load('current', {'packages':['corechart','bar']});
 
 					$countN = $pdo->query("SELECT count(id_participante) as totalN FROM participante WHERE sexo = ''");
 					$totalN = $countN->fetchObject();
-					echo "['Não Informado', ". $totalN->totalN."]";
+					echo "['Nï¿½o Informado', ". $totalN->totalN."]";
 
 					?>
         ]);
