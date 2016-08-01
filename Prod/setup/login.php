@@ -113,7 +113,7 @@ $res = $qryUser->fetchObject();
       </div>
     </section>
 
-		<?php require("rodape.php"); ?>
+		<?php require("../rodape.php"); ?>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="<?php echo $urlBase; ?>js/vendor/jquery.mask.js"></script>

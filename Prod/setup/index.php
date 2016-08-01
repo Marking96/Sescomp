@@ -28,7 +28,7 @@ exit;	// sai da p?ina para n exibir o restante do documento php
 							$getTotal = $pdo->query("SELECT count(id_participante) as total FROM participante");
 							$all = $getTotal->fetchObject();
 							echo $all->total;
-							 ?> Inscri?es</h2>
+							 ?> Inscrições</h2>
 							</div>
 					</div>
 

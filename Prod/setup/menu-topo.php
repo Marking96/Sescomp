@@ -24,14 +24,13 @@ Header
         Navigation
         =============================================== -->
 
-<?php if(isset($_SESSION['idUsuario'])){ ?>
+      <?php if(isset($_SESSION['idUsuario'])){ ?>
         <ul class="nav hidden-phone hidden-tablet">
-          <li><a href="<?php echo $urlBase;?>">Inicio</a></li>
-          <!--<li><a href="#about">Jornada</a></li>-->
-          <li><a href="<?php echo $urlBase;?>mapa">Mapa</a></li>
-          <li><a href="<?php echo $urlBase;?>palestrantes">Palestrantes</a></li>
-          <li><a href="<?php echo $urlBase;?>oficinas">Oficinas</a></li>
-          <li><a href="<?php echo $urlBase;?>inscritos">Inscritos</a></li>
+          <li><a href="<?php echo $urlBase;?>setup/">Inicio</a></li>
+          <li><a href="<?php echo $urlBase;?>setup/mapa">Mapa></a></li>
+          <li><a href="<?php echo $urlBase;?>setup/palestrantes">Palestrantes</a></li>
+          <li><a href="<?php echo $urlBase;?>setup/oficinas">Oficinas</a></li>
+          <li><a href="<?php echo $urlBase;?>setup/inscritos">Inscritos</a></li>
           <!--<li><a href="#" class="event-button">Inscrições</a></li>-->
         </ul>
         <!-- End Navigation
