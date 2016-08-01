@@ -42,13 +42,13 @@ Favicons e Apple Touch Icon
 <!-- ==============================================
 CSS
 =============================================== -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/bootstrap.min.css" /> <!-- Twitter Bootstrap -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/bootstrap-responsive.min.css" /> <!-- Twitter Bootstrap Responsive -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/font-awesome.min.css"/> <!-- Font Awesome -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/flexslider.css"/> <!-- Flexslider -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/fancybox/jquery.fancybox.css"/> <!-- Fancybox -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/style.css"/> <!-- Main stylesheet -->
-<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/setup/css/style-responsive.css"/> <!-- Main stylesheet responsive -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/bootstrap.min.css" /> <!-- Twitter Bootstrap -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/bootstrap-responsive.min.css" /> <!-- Twitter Bootstrap Responsive -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/font-awesome.min.css"/> <!-- Font Awesome -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/flexslider.css"/> <!-- Flexslider -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/fancybox/jquery.fancybox.css"/> <!-- Fancybox -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/style.css"/> <!-- Main stylesheet -->
+<link rel="stylesheet" href="<?php echo $urlBase; ?>css/style-responsive.css"/> <!-- Main stylesheet responsive -->
 
 <!--[if IE 7]>
   <link rel="stylesheet" href="css/font-awesome-ie7.min.css">

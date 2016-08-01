@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Ago-2016 às 15:25
+-- Generation Time: 01-Ago-2016 às 16:36
 -- Versão do servidor: 10.1.10-MariaDB
 -- PHP Version: 5.6.15
 
@@ -161,7 +161,7 @@ CREATE TABLE `participante` (
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `login` varchar(100) NOT NULL,
-  `senha` varchar(16) NOT NULL,
+  `senha` varchar(41) NOT NULL,
   `nome` varchar(200) NOT NULL,
   `data_acesso` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -171,7 +171,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `login`, `senha`, `nome`, `data_acesso`) VALUES
-(1, 'root', '1234', 'teste', '0000-00-00');
+(2, 'marking96', '356a192b7913b04c54574d18c28d46e6395428ab', 'Marcelo Estevam', '2016-08-01'),
+(3, 'teknus', '356a192b7913b04c54574d18c28d46e6395428ab', 'Mateus Oliveira', '2016-08-01'),
+(4, 'admin', 'c138f15c2688fefc69777a808732abf1664b25dd', 'Administrador', '2016-08-01');
 
 --
 -- Indexes for dumped tables
@@ -235,7 +237,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
