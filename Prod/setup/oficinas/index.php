@@ -170,7 +170,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 		<h2 class="padding-top">Oficinas Cadastrados</h2>
 		<?php
 
-		$qryAtividade = $pdo->query("SELECT * FROM atividade ORDER BY id_atividade");
+		$qryAtividade = $pdo->query("SELECT * FROM atividades ORDER BY id_atividade");
 		while($atividade = $qryAtividade->fetchObject()){
 		?>
 		<div class="mapa">
