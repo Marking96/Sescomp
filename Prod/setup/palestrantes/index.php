@@ -45,7 +45,7 @@ $gplus	= filter_input(INPUT_POST, 'gplus');
 
 
 ?>
-<title>Inscrição - II FLISOL Vale</title>
+<title>Inscrição - Sescomp</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -58,11 +58,11 @@ $gplus	= filter_input(INPUT_POST, 'gplus');
 
 
           <div class="span12" id="about">
-            <h2 class="padding-top">Administrador <span>FLISOL Vale</span> |
+            <h2 class="padding-top">Administrador <span>Sescomp</span> |
               <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="sair.php">sair</a></small></h2>
 
           <div id="apresentacao">
-          <h3>Seja bem vindo ao formulário de inscrição do Flisol Vale 2016!</h3>
+          <h3>Seja bem vindo ao formulário de inscrição do Sescomp!</h3>
 
           <div class="row-fluid">
 						<!-- Cadastro de Oficinas -->
