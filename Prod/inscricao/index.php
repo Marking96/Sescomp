@@ -268,8 +268,8 @@ if($erro) alert($msg,"error");
 	input("telefone1","Telefone","input-medium","telefone1","(88) 99999-9999",true,$_POST["telefone1"]);
 
 	input("cep","CEP","input-medium","cep","00000-000",true,$_POST["cep"],"text","","","Informe o CEP para carregar Cidade e UF.");
-	input("cidade","Cidade","input-xxlarge uneditable-input","cidade","",false,$_POST["cidade"],'text','readonly');
-	input("uf","UF","input-mini uneditable-input","uf","",false,$_POST["uf"],'text','readonly');
+	input("cidade","Cidade","input-xxlarge","cidade","",false,$_POST["cidade"],'text');
+	input("uf","UF","input-mini","uf","",false,$_POST["uf"],'text');
 	input("nascimento","Data de Nascimento","","nascimento","DD/MM/AAAA",false,$_POST["nascimento"]);
 
 	?>
@@ -457,22 +457,22 @@ $("#ocupacao").change(function(e){
 
 });
 
-var options =  {
-onComplete: function(cepInput) {
-		$.ajax({
-					dataType:'json',
-					method:"GET",
-          url:"../consultacep.php",
-					data:{ cep: cepInput}
-      }).success(function(data){
-					if(data[0].cidade && data[0].uf){
-						$('#cidade').val(data[0].cidade);
-						$('#uf').val(data[0].uf);
-					}
-
-      });
-  }
-};
+//var options =  {
+//onComplete: function(cepInput) {
+//		$.ajax({
+//					dataType:'json',
+//					method:"GET",
+//          url:"../consultacep.php",
+//					data:{ cep: cepInput}
+//      }).success(function(data){
+//					if(data[0].cidade && data[0].uf){
+//						$('#cidade').val(data[0].cidade);
+//						$('#uf').val(data[0].uf);
+//					}
+//
+//      });
+//  }
+//};
 
 var optionsCPF =  {
 onComplete: function(cpfInput) {
