@@ -80,7 +80,7 @@ if (!$resp->isSuccess()) {
 	// What happens when the CAPTCHA was entered incorrectly
 $captcha = true;
 } else {
-	$captcha = true;
+	$captcha = false;
 }
 
 
@@ -170,28 +170,25 @@ $mail = new PHPMailer;
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'br14.hostgator.com.br';  // Specify main and backup SMTP servers
+$mail->Host = 'smtp.sescomp2016.esy.es';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'flisol@valelivre.org';                 // SMTP username
-$mail->Password = 'ciVPT3SXX,TN';                           // SMTP password
+$mail->Username = 'inscricao@sescomp2016.esy.es';                 // SMTP username
+$mail->Password = '*M/l9KcysEs0';                           // SMTP password
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;                                    // TCP port to connect to
 
-$mail->setFrom('flisol@valelivre.org', 'Flisol Vale 2016');
+$mail->setFrom('inscricao@sescomp2016.esy.es', 'II Sescomp');
 $mail->addAddress($email, $nome);     // Add a recipient
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = "Seja bem vindo ao Flisol Vale 2016!";
+$mail->Subject = "Seja bem vindo a II Sescomp!";
 
 // Gerando o corpo do E-mail
-$body = '<div style="font-family:sans-serif;text-align:center;">
-<img src="http://flisol.valelivre.org/images/cabecalho.jpg" alt="cabecalho" /><br/>
-<p>Parabéns <b>'.$nome.'</b> sua inscrição no Flisol Vale 2016 foi realizada com sucesso!</p>
+$body = '<p>Parabéns <b>'.$nome.'</b> sua inscrição na Sescomp foi realizada com sucesso!</p>
 <hr/>
 <h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscrição</h3>';
 $minicursos = array_filter($minicursos);
 if(count($minicursos)){
-
 	$body .= '<p style="padding:10px;font-family:sans-serif;">Você se inscreveu em '. count($minicursos) .' oficinas:</p>';
 	$body .= '<ul>';
 	foreach($minicursos as $v) {
@@ -211,7 +208,7 @@ if(count($minicursos)){
   <img src="http://flisol.valelivre.org/images/rodape.jpg" alt="cabecalho" />';
 
 $mail->Body    = $body;
-$mail->AltBody = 'Seja bem vindo ao Flisol Vale 2016! Sua inscrição foi realizada com sucesso.';
+$mail->AltBody = 'Seja bem vindo ao Sescomp! Sua inscrição foi realizada com sucesso.';
 
 if(!$mail->send()) {
     $msg .= 'Message could not be sent.';
@@ -241,12 +238,12 @@ if(!$mail->send()) {
         <div class="row">
 
           <div class="span12" id="about">
-            <h2 class="padding-top">Inscreva-se no <span>FLISOL Vale</span></h2>
+            <h2 class="padding-top">Inscreva-se no <span>sescomp</span></h2>
 
 	<div id="apresentacao">
-		<h3>Seja bem vindo ao formulário de inscrição do Flisol Vale 2016!</h3>
+		<h3>Seja bem vindo ao formulário de inscrição do Sescomp!</h3>
 <p>
-	Para evitar erros durante sua inscrição esteja atento ás informações preenchidas e em caso de dúvidas entre em contato com a equipe do evento via o e-mail contato[arroba]valelivre[ponto]org. Lembrando que as informações fornecidas serão utilizadas para confecção de certificados e/ou crachás. <strong>A equipe do Flisol Vale 2016 deseja um bom proveiro das atividades!</strong>
+	Para evitar erros durante sua inscrição esteja atento ás informações preenchidas e em caso de dúvidas entre em contato com a equipe do evento via o e-mail contato[arroba]valelivre[ponto]org. Lembrando que as informações fornecidas serão utilizadas para confecção de certificados e/ou crachás. <strong>A equipe do Sescomp deseja um bom proveiro das atividades!</strong>
 </p>
 
 <?php
@@ -351,7 +348,7 @@ if($erro) alert($msg,"error");
 		</thead>
 		<tbody>
 			<?php
-			$qryAtividades = $pdo->query("SELECT * FROM atividades ORDER BY dia");
+			$qryAtividades = $pdo->query("SELECT * FROM atividades ORDER BY titulo");
 			
                         while($atividade = $qryAtividades->fetchObject()){
 
