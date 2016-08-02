@@ -9,6 +9,36 @@ echo '<script type="text/javascript">location = "login"</script>';
 exit;	// sai da página para n exibir o restante do documento php
 
 }
+if(isset($_POST['envioMapa'])){
+
+$nome	= filter_input(INPUT_POST, 'nome');
+$dia_evento	= filter_input(INPUT_POST, 'dia_evento');
+$inicio	= filter_input(INPUT_POST, 'inicio');
+$termino= filter_input(INPUT_POST, 'termino');
+
+
+	if(empty($nome)){
+		$erro = true;
+		$msg = "Informe o Nome do Palestrante";
+	}else{
+
+		$param = array($nome,date('Y-m-d',strtotime($dia_evento)),$inicio,$termino);
+		$qryInserir = $pdo->prepare("INSERT INTO mapa SET nome=?,dia=?,inicio=?,termino=?");
+		$qryInserir->execute($param);
+
+		if($qryInserir->rowCount() <= 0){
+			$erro = true;
+			$msg = "Erro ao cadastrar, tente novamente.";
+			$debug = $qryInserir->errorInfo();
+			$msg .= "<br/>". $debug[2];
+		}else{
+			$ok = true;
+			$msg = "Mapa Cadastrado com Sucesso!";
+		}
+
+		}
+
+	}
 
 
 ?>
@@ -42,7 +72,8 @@ exit;	// sai da página para n exibir o restante do documento php
           <form class="form-horizontal" method="POST" action="">
           <?php
 
-          input("nome","Nome do Mapa","input-medium","nome","Exe.: M01,M02,T01",true,$_POST["nome"]);
+          input("nome","Nome do Mapa","input-medium","nome","Exe.: M01,M02,T01",true,$_POST["nome"],"inputNome");
+          input("dia_evento","Dia do evento","","dia_evento","DD-MM-AAAA",FALSE,$_POST["dia_evento"]);
           input("inicio","Hora Início","input-small","inicio","00:00",true,$_POST["inicio"],"text","","inputInicio");
           input("termino","Hora Termino","input-small","termino","00:00",true,$_POST["termino"],"text","","inputTermino");
 
@@ -64,7 +95,7 @@ exit;	// sai da página para n exibir o restante do documento php
           while($mapa = $qryMapas->fetchObject()){
           ?>
           <div class="mapa">
-            <?php echo $mapa->id_mapa ?> - <?php echo $mapa->nome ?>: <?php echo $mapa->inicio ?>-<?php echo $mapa->termino ?>
+            <?php echo $mapa->id_mapa ?> - <?php echo $mapa->nome ?>: <?php echo date('d/m',strtotime($mapa->dia)) ?>-<?php echo date('H:i',strtotime($mapa->inicio)) ?>-<?php echo date('H:i',strtotime($mapa->termino))?>
           </div>
           <?php } ?>
 
@@ -87,6 +118,7 @@ exit;	// sai da página para n exibir o restante do documento php
 
 	$('#inicio').mask('00:00');
 	$('#termino').mask('00:00');
+        $('#dia_evento').mask('00/00/0000');
 
   $(".alert").alert();
 

@@ -26,12 +26,11 @@ Header
 
 <?php if(isset($_SESSION['idUsuario'])){ ?>
         <ul class="nav hidden-phone hidden-tablet">
-          <li><a href="<?php echo $urlBase;?>">Inicio</a></li>
-          <!--<li><a href="#about">Jornada</a></li>-->
-          <li><a href="<?php echo $urlBase;?>mapa">Mapa</a></li>
-          <li><a href="<?php echo $urlBase;?>palestrantes">Palestrantes</a></li>
-          <li><a href="<?php echo $urlBase;?>oficinas">Oficinas</a></li>
-          <li><a href="<?php echo $urlBase;?>inscritos">Inscritos</a></li>
+          <li><a href="http://localhost/Sescomp/setup/">Inicio</a></li>
+          <li><a href="http://localhost/Sescomp/setup/mapa">Mapa</a></li>
+          <li><a href="http://localhost/Sescomp/setup/palestrantes">Palestrantes</a></li>
+          <li><a href="http://localhost/Sescomp/setup/oficinas">Oficinas</a></li>
+          <li><a href="http://localhost/Sescomp/setup/inscritos">Inscritos</a></li>
           <!--<li><a href="#" class="event-button">Inscrições</a></li>-->
         </ul>
         <!-- End Navigation
