@@ -3,9 +3,9 @@
 error_reporting(E_ALL & ~E_NOTICE);
 
 define(HOST, 'localhost');
-define(USER, 'root');
-define(SENHA, '');
-define(BD, 'sescomp');
+define(USER, 'u592794861_scpm');
+define(SENHA, 'wY:/NStC9r9atCnh3I');
+define(BD, 'u592794861_bd');
 
 try{
 	$dsn = "mysql:host=".HOST.";dbname=".BD.";charset=utf8";

@@ -42,7 +42,7 @@ $termino= filter_input(INPUT_POST, 'termino');
 
 
 ?>
-<title>Inscrição - II FLISOL Vale</title>
+<title>Inscrição - Sescomp</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -53,11 +53,11 @@ $termino= filter_input(INPUT_POST, 'termino');
         <div class="row">
 
           <div class="span12" id="about">
-            <h2 class="padding-top">Administrador <span>FLISOL Vale</span> |
+            <h2 class="padding-top">Administrador <span>Sescomp</span> |
               <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="sair.php">sair</a></small></h2>
 
           <div id="apresentacao">
-          <h3>Seja bem vindo ao formulário de inscrição do Flisol Vale 2016!</h3>
+          <h3>Seja bem vindo ao formulário de inscrição do Sescomp!</h3>
           <?php
 
           if($ok)

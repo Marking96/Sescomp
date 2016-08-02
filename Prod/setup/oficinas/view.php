@@ -4,32 +4,32 @@ require("../cabecalho.php");
 require("../includes/makeInput.php");
 
 if(!isset($_SESSION['idUsuario'])){
-/* Direciona para a p·gina depois de logado */
+/* Direciona para a p?ina depois de logado */
 echo '<script type="text/javascript">location = "login"</script>';
-exit;	// sai da p·gina para n exibir o restante do documento php
+exit;	// sai da p?ina para n exibir o restante do documento php
 
 }
 
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
-/* Direciona para a p·gina depois de logado */
+/* Direciona para a p?ina depois de logado */
 echo '<script type="text/javascript">location = "index"</script>';
-exit;	// sai da p·gina para n exibir o restante do documento php
+exit;	// sai da p?ina para n exibir o restante do documento php
 
 }
 
 $id = $_GET["id"];
 
-$getAtividade = $pdo->query("SELECT * from atividade WHERE id_atividade = ". $id);
+$getAtividade = $pdo->query("SELECT * from atividades WHERE id_atividade = ". $id);
 if($getAtividade->rowCount() > 0){
   $atividade = $getAtividade->fetchObject();
 }else{
   echo '<script type="text/javascript">location = "index"</script>';
-  exit;	// sai da p·gina para n exibir o restante do documento php
+  exit;	// sai da p?ina para n exibir o restante do documento php
 }
 
 
 ?>
-<title>InscriÁ„o - Sescomp</title>
+<title>Inscri√ß√£o - Sescomp</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -44,7 +44,7 @@ if($getAtividade->rowCount() > 0){
               <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="../sair.php">sair</a></small></h2>
 
           <div id="apresentacao">
-          <h3>Seja bem vindo ao formul·rio de inscriÁ„o do Sescomp!</h3>
+          <h3>Seja bem vindo ao formul√°rio de inscri√ß√£o do Sescomp!</h3>
 
   <div class="row-fluid">
 		<!-- Cadastro de Oficinas -->

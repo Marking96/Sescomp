@@ -14,9 +14,9 @@ $recaptcha = new \ReCaptcha\ReCaptcha($secret);
 $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
 //if(!isset($_SESSION['idUsuario'])){
-/* Direciona para a p�gina depois de logado */
+/* Direciona para a página depois de logado */
 //echo '<script type="text/javascript">location = "http://flisol.valelivre.org"</script>';
-//exit;	// sai da p�gina para n exibir o restante do documento php
+//exit;	// sai da página para n exibir o restante do documento php
 
 //}
 
@@ -186,13 +186,13 @@ $mail->Subject = "Seja bem vindo ao Flisol Vale 2016!";
 // Gerando o corpo do E-mail
 $body = '<div style="font-family:sans-serif;text-align:center;">
 <img src="http://flisol.valelivre.org/images/cabecalho.jpg" alt="cabecalho" /><br/>
-<p>Parab�ns <b>'.$nome.'</b> sua inscri��o no Flisol Vale 2016 foi realizada com sucesso!</p>
+<p>Parabéns <b>'.$nome.'</b> sua inscrição no Flisol Vale 2016 foi realizada com sucesso!</p>
 <hr/>
-<h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscri��o</h3>';
+<h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscrição</h3>';
 $minicursos = array_filter($minicursos);
 if(count($minicursos)){
 
-	$body .= '<p style="padding:10px;font-family:sans-serif;">Voc� se inscreveu em '. count($minicursos) .' oficinas:</p>';
+	$body .= '<p style="padding:10px;font-family:sans-serif;">Você se inscreveu em '. count($minicursos) .' oficinas:</p>';
 	$body .= '<ul>';
 	foreach($minicursos as $v) {
 	  if($v != ''){
@@ -351,7 +351,7 @@ if($erro) alert($msg,"error");
 		</thead>
 		<tbody>
 			<?php
-			$qryAtividades = $pdo->query("SELECT * FROM atividades ORDER BY Titulo");
+			$qryAtividades = $pdo->query("SELECT * FROM atividades ORDER BY dia");
 			
                         while($atividade = $qryAtividades->fetchObject()){
 
@@ -395,7 +395,7 @@ WHERE id_mapa IN (". implode(',',$mapeamento) .");");
 						<?php if($total > 0){
 							?>
 	<button type="button" class="btn btn-primary participar" data-toggle="button" data-complete-text="finished!"
-	value="<?php echo $atividade->id_atividade;?>">Participar</button>
+	value="<?php echo $atividade->id_ativdiade;?>">Participar</button>
 	<input type="hidden" name="oficinas[]" class="input_participar" value="" id="input_<?php echo $atividade->id_atividade;?>">
 						<?php
 						} ?>

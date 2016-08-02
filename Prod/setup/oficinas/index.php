@@ -44,7 +44,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
     $palestrantes = json_encode($_POST['palestrantes']);
 
 		$param = array($titulo,$descricao,$palestrantes,$vagas,$mapas,$local);
-		$qryInserir = $pdo->prepare("INSERT INTO atividade SET titulo=?,descricao=?,palestrantes=?,vagas=?,mapeamento=?,local=?,tipo='oficina',situacao='ativo'");
+		$qryInserir = $pdo->prepare("INSERT INTO atividades SET titulo=?,descricao=?,palestrantes=?,vagas=?,mapeamento=?,local=?,tipo='oficina',situacao='ativo'");
 		$qryInserir->execute($param);
 
 		if($qryInserir->rowCount() <= 0){
@@ -149,8 +149,8 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 
              ?>
             <option value="<?php echo $mapa->id_mapa; ?>">
-              <?php echo $mapa->nome; ?> - <?php echo $mapa->inicio; ?>:<?php echo $mapa->termino; ?>
-            </option>
+             <?php echo $mapa->nome; ?> - <?php echo date('d/m',strtotime($mapa->dia)) ?> : <?php echo date('H:i',strtotime($mapa->inicio)) ?> : <?php echo date('H:i',strtotime($mapa->termino))?>
+             </option>
             <?php
           }
              ?>
