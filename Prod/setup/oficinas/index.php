@@ -174,7 +174,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 		while($atividade = $qryAtividade->fetchObject()){
 		?>
 		<div class="mapa">
-			<a href="view.php?id=<?php echo $atividade->id_atividade ?>"><?php echo $atividade->nome ?>: <?php echo $atividade->descricao ?></a> 
+			<a href="view.php?id=<?php echo $atividade->id_atividade ?>"><?php echo $atividade->titulo ?> : <?php echo $atividade->descricao ?></a> 
 		</div>
 		<?php } ?>
 
