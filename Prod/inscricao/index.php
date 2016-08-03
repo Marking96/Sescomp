@@ -267,7 +267,7 @@ if($erro) alert($msg,"error");
 	input("cep","CEP","input-medium","cep","00000-000",true,$_POST["cep"],"text","","","Informe o CEP para carregar Cidade e UF.");
 	input("cidade","Cidade","input-xxlarge","cidade","",false,$_POST["cidade"],'text');
 	input("uf","UF","input-mini","uf","",false,$_POST["uf"],'text');
-	input("nascimento","Data de Nascimento","","nascimento","DD/MM/AAAA",false,$_POST["nascimento"]);
+	input("nascimento","Data de Nascimento","","nascimento","DD-MM-AAAA",false,$_POST["nascimento"]);
 
 	?>
 
@@ -526,7 +526,7 @@ $("#cemail").blur(function(e){
 	$('#cep').mask('00000-000', options);
 	$('#cpf').mask('000.000.000-00', optionsCPF);
 	$('#telefone1').mask('(00) 00000-0000');
-	$('#nascimento').mask('00/00/0000');
+	$('#nascimento').mask('00-00-0000');
 </script>
 
 	</body>

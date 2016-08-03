@@ -130,6 +130,11 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
             <option value="Laboratório I">Laboratório I</option>
             <option value="Laboratório II">Laboratório II</option>
             <option value="Laboratório III">Laboratório III</option>
+            <option value="Auditório">Auditório</option>
+            <option value="Videoconferência">Video Conferência</option>
+            <option value="Sala de Estudos">Sala de Estudos</option>
+            <option value="Sala 8">Sala 8</option>
+            <option value="Auditório">Auditório</option>
           </select>
         </div>
       </div>
