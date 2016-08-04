@@ -90,7 +90,7 @@ google.charts.load('current', {'packages':['corechart','bar']});
 
 					$countN = $pdo->query("SELECT count(id_participante) as totalN FROM participante WHERE sexo = ''");
 					$totalN = $countN->fetchObject();
-					echo "['N? Informado', ". $totalN->totalN."]";
+					echo "['Não Informado', ". $totalN->totalN."]";
 
 					?>
         ]);

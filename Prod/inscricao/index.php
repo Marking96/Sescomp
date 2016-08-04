@@ -3,22 +3,15 @@ require("../cabecalho.php");
 require("../includes/makeInput.php");
 require("../includes/funcoes.php");
 require("../includes/PHPMailer-master/PHPMailerAutoload.php");
-require('../includes/recaptcha-master/src/autoload.php');
+//require('../includes/recaptcha-master/src/autoload.php');
 
 $secret = "6LfeUiYTAAAAAAxZoJ8izwxlLTnrI0s7pWpEF0r6";
 $siteKey = '6LfeUiYTAAAAAJvvRnRTkuRGfhgmPaT_1T4IYkmM';
 
 
 $lang = 'pt-BR';
-$recaptcha = new \ReCaptcha\ReCaptcha($secret);
-$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
-
-//if(!isset($_SESSION['idUsuario'])){
-/* Direciona para a página depois de logado */
-//echo '<script type="text/javascript">location = "http://flisol.valelivre.org"</script>';
-//exit;	// sai da página para n exibir o restante do documento php
-
-//}
+//$recaptcha = new \ReCaptcha\ReCaptcha($secret);
+//$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
 if(isset($_POST['envio'])){
 
@@ -37,161 +30,126 @@ if(isset($_POST['envio'])){
 	$instEnsino	= filter_input(INPUT_POST, 'instEnsino');
 	$sexo	= filter_input(INPUT_POST, 'sexo');
 
-	$minicursos = $_POST['oficinas'];
+//!$resp->isSuccess()
+if (false) {
+	// What happens when the CAPTCHA was entered incorrectly
+$captcha = true;
+} else {
+	$captcha = false;
+}
 
-	$qryCPF = $pdo->prepare("SELECT cpf FROM participante WHERE cpf = ?");
-	$qryCPF->execute(array($cpf));
-	if($qryCPF->rowCount() > 0){
-		$hasCPF = true;
+
+	if(empty($nome)){
+		$erro = true;
+		$msg = "Informe seu Nome";
+	}elseif(empty($cpf) || !validaCPF(limpaCPF_CNPJ($cpf)) ){
+		$erro = true;
+		$msg = 'Algum problema com o seu CPF';
+	}elseif($hasCPF){
+		$erro = true;
+		$msg = 'Seu CPF já foi informado. Entre em contato com a equipe do Flisol caso exista algum erro';
+	/*}elseif($captcha){
+		$erro = true;
+		$msg = 'Confirme o captcha de forma correta';
+		$msg .= $resp->getErrorCodes();
+	*/}elseif(empty($email) || $email != $cemail || !filter_var($email, FILTER_VALIDATE_EMAIL)){
+		$erro = true;
+		$msg = 'Verifique se informou um E-mail correto e/o confirmou';
+	}elseif(empty($telefone1)){
+		$erro = true;
+		$msg = 'Informe pelo menos um telefone para contato';
+	}elseif(empty($cidade) || empty($uf) || empty($cep)){
+		$erro = true;
+		$msg = 'Suas informações de endereços não foram informadas';
+	}elseif(count($choques)){
+		$erro = true;
+		$msg = 'Existem choques de horários nas oficinas selecionadas. Confira os horários.';
 	}else{
-		$hasCPF = false;
-	}
 
-	// Verifica mapas repetidos nos horários
-	//print_r($_POST);
-	$msg1 = "";
-	$mapas = array();
-	$choques = array();
+		$param = array($nome,limpaCPF_CNPJ($cpf),$email,$telefone1,$cep,
+		$cidade,$uf,date('Y-m-d',strtotime($nascimento)),$escolaridade,
+		$ocupacao,$iniciativa,$instEnsino,$sexo);
+		$qryInserir = $pdo->prepare("INSERT INTO participante SET
+			nome=?,cpf=?,email=?,telefone1=?,cep=?,
+			cidade=?,uf=?,data_nasc=?,escolaridade=?,
+			ocupacao=?,iniciativa=?,instensino=?,sexo=?,
+			data_cadastro=NOW()");
+		$qryInserir->execute($param);
 
-	print_r($_POST);
-
-	foreach ($minicursos as $v) {
-		if($v != ''){
-			$qryAtividade = $pdo->query("SELECT mapeamento FROM atividades WHERE id_atividade = $v");
-			$mapeamento = $qryAtividade->fetchObject();
-			$mapaAtividade = json_decode($mapeamento->mapeamento, true);
-			foreach ($mapaAtividade as $mapa) {
-				if(!in_array($mapa, $mapas)){
-						array_push($mapas,$mapa);
-				}else{
-					$msg1 .= $mapa;
-					array_push($choques,$v);
-				}
-				
-			}
-		}
-	}
-
-	if (!$resp->isSuccess()) {
-		
-		$captcha = true;
-	} else {
-		$captcha = false;
-	}
-
-
-		if(empty($nome)){
+		if($qryInserir->rowCount() <= 0){
 			$erro = true;
-			$msg = "Informe seu Nome";
-		}elseif(empty($cpf) || !validaCPF(limpaCPF_CNPJ($cpf)) ){
-			$erro = true;
-			$msg = 'Algum problema com o seu CPF';
-		}elseif($hasCPF){
-			$erro = true;
-			$msg = 'Seu CPF já foi informado. Entre em contato com a equipe do Flisol caso exista algum erro';
-		}elseif($captcha){
-			$erro = true;
-			$msg = 'Confirme o captcha de forma correta';
-			$msg .= $resp->getErrorCodes();
-		}elseif(empty($email) || $email != $cemail || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-			$erro = true;
-			$msg = 'Verifique se informou um E-mail correto e/o confirmou';
-		}elseif(empty($telefone1)){
-			$erro = true;
-			$msg = 'Informe pelo menos um telefone para contato';
-		}elseif(empty($cidade) || empty($uf) || empty($cep)){
-			$erro = true;
-			$msg = 'Suas informações de endereços não foram informadas';
-		}elseif(count($choques)){
-			$erro = true;
-			$msg = 'Existem choques de horários nas oficinas selecionadas. Confira os horários.';
+			$msg = "Erro ao cadastrar, tente novamente.";
+			$debug = $qryInserir->errorInfo();
+			$msg .= "<br/>". $debug[2];
 		}else{
+			$ok = true;
 
-			$param = array($nome,limpaCPF_CNPJ($cpf),$email,$telefone1,$cep,
-			$cidade,$uf,date('Y-m-d',strtotime($nascimento)),$escolaridade,
-			$ocupacao,$iniciativa,$instEnsino,$sexo);
-			$qryInserir = $pdo->prepare("INSERT INTO participante SET
-				nome=?,cpf=?,email=?,telefone1=?,cep=?,
-				cidade=?,uf=?,data_nasc=?,escolaridade=?,
-				ocupacao=?,iniciativa=?,instensino=?,sexo=?,
-				data_cadastro=NOW()");
-			$qryInserir->execute($param);
+			// Cadastro das respostas
+				$ultimoId = $pdo->lastInsertId('id_participante');
 
-			if($qryInserir->rowCount() <= 0){
-				$erro = true;
-				$msg = "Erro ao cadastrar, tente novamente.";
-				$debug = $qryInserir->errorInfo();
-				$msg .= "<br/>". $debug[2];
-			}else{
-				$ok = true;
+				foreach($minicursos as $v){
+					if(!empty($v)){
 
-				// Cadastro das respostas
-					$ultimoId = $pdo->lastInsertId('id_participante');
+						//Verifica se tem vaga
+						$qryVagas = $pdo->query("Select count(*) vagas_ocupadas FROM atividade_participante WHERE id_atividade = $v");
+						$vagas = $qryVagas->fetchObject();
 
-					foreach($minicursos as $v){
-						if(!empty($v)){
+						$qryTotalVagas = $pdo->query("Select vagas FROM atividade WHERE id_atividade = $v");
+						$total = $qryTotalVagas->fetchObject();
 
-							//Verifica se tem vaga
-							$qryVagas = $pdo->query("Select count(*) vagas_ocupadas FROM atividade_participante WHERE id_atividade = $v");
-							$vagas = $qryVagas->fetchObject();
+						$totalVagas = $total->vagas - $vagas->vagas_ocupadas;
 
-							$qryTotalVagas = $pdo->query("Select vagas FROM atividade WHERE id_atividade = $v");
-							$total = $qryTotalVagas->fetchObject();
+		if($totalVagas > 0){
+			$qryResposta = $pdo->prepare("INSERT INTO atividade_participante SET id_atividade=?, id_participante=?");
+			$qryResposta->execute(array($v,$ultimoId));
 
-							$totalVagas = $total->vagas - $vagas->vagas_ocupadas;
+			// Atualiza o nmero de Vagas
+			$totalVagas--;
+			$qryUpdate = $pdo->query("UPDATE atividades SET vagas_disp = $totalVagas
+				WHERE id_atividade = $v;");
 
-			if($totalVagas > 0){
-				$qryResposta = $pdo->prepare("INSERT INTO atividade_participante SET id_atividade=?, id_participante=?");
-				$qryResposta->execute(array($v,$ultimoId));
+		}
 
-				// Atualiza o n�mero de Vagas
-				$totalVagas--;
-				$qryUpdate = $pdo->query("UPDATE atividade SET vagas_disp = $totalVagas
-					WHERE id_atividade = $v;");
-
-			}
-
-
-						}
 
 					}
 
+				}
 
-			$msg = "Inscrição Realizada com Sucesso";
 
-			// Envio de E-mail para o participante
+	$msg = "Inscrição realizada com Sucesso!";
 
-		$mail = new PHPMailer;
+	// Envio de E-mail para o participante
+
+	$mail = new PHPMailer;
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 /*
-		//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'smtp.sescomp2016.esy.es';  // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'inscricao@sescomp2016.esy.es';                 // SMTP username
+	$mail->Password = '*M/l9KcysEs0';                           // SMTP password
+	$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 465;                                    // TCP port to connect to
 
-		$mail->isSMTP();                                      // Set mailer to use SMTP
-		$mail->Host = 'smtp.sescomp2016.esy.es';  // Specify main and backup SMTP servers
-		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'inscricao@sescomp2016.esy.es';                 // SMTP username
-		$mail->Password = '*M/l9KcysEs0';                           // SMTP password
-		$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-		$mail->Port = 465;                                    // TCP port to connect to
-
-		$mail->setFrom('inscricao@sescomp2016.esy.es', 'II Sescomp');
-		$mail->addAddress($email, $nome);     // Add a recipient
-		$mail->isHTML(true);                                  // Set email format to HTML
+	$mail->setFrom('inscricao@sescomp2016.esy.es', 'II Sescomp');
+	$mail->addAddress($email, $nome);     // Add a recipient
+	$mail->isHTML(true);                                  // Set email format to HTML
 */
-		$mail->Subject = "Seja bem vindo a II Sescomp!";
+	$mail->Subject = "Seja bem vindo a II Sescomp!";
 
-		// Gerando o corpo do E-mail
-		$body = '<p>Parabéns <b>'.$nome.'</b> sua inscrição na Sescomp foi realizada com sucesso!</p>
-		<hr/>
-		<h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscrição</h3>';
-		$minicursos = array_filter($minicursos);
-		if(count($minicursos)){
-			$body .= '<p style="padding:10px;font-family:sans-serif;">Você se inscreveu em '. count($minicursos) .' oficinas:</p>';
-			$body .= '<ul>';
-			foreach($minicursos as $v) {
-			  if($v != ''){
+	// Gerando o corpo do E-mail
+	$body = '<p>Parabéns <b>'.$nome.'</b> sua inscrição na Sescomp foi realizada com sucesso!</p>
+	<hr/>
+	<h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscrição</h3>';
+	$minicursos = array_filter($minicursos);
+	if(count($minicursos)){
+		$body .= '<p style="padding:10px;font-family:sans-serif;">Você se inscreveu em '. count($minicursos) .' oficinas:</p>';
+		$body .= '<ul>';
+		foreach($minicursos as $v) {
+		  if($v != ''){
 
-					$getName = $pdo->query("Select titulo FROM atividade WHERE id_atividade = $v");
-					$minicurso = $getName->fetchObject();
+				$getName = $pdo->query("Select titulo FROM atividade WHERE id_atividade = $v");
+				$minicurso = $getName->fetchObject();
 				  $body .= '<li style="font-family:sans-serif;">'. $minicurso->titulo . '</li>';
 
 				}
@@ -321,16 +279,6 @@ if($erro) alert($msg,"error");
 			</select>
 		</div>
 	</div>
-
-	<div class="control-group">
-		<label for="" class="control-label"></label>
-		<div class="controls">
-			<div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
-			
-		</div>
-	</div>
-
-
 	<hr/>
 	<h2>Minicursos e Oficinas</h2>
 
@@ -423,7 +371,7 @@ WHERE id_mapa IN (". implode(',',$mapeamento) .");");
 <script type="text/javascript" src="<?php echo $urlBase; ?>js/vendor/jquery.mask.js"></script>
 <script type="text/javascript" src="<?php echo $urlBase; ?>js/bootstrap-alert.js"></script>
 <script type="text/javascript" src="<?php echo $urlBase; ?>js/bootstrap-button.js"></script>
-<script src='https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>'>
+<!--<script src='https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>'>-->
 	    </script>
 <script type="text/javascript">
 
