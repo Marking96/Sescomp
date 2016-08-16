@@ -13,7 +13,7 @@ require("configuracao.php");
 	<meta name="author" content="Vale Livre"/>
 	<meta Name="robots" content="index,follow">
 	<!-- Meta tags de SEO -->
-	<meta name="description" content="O FLISOL Vale do Jaguaribe acontece desde o ano de 2015, a região Vale do Jaguaribe, no interior do Ceará vem se unindo anualmente para a realização de um evento único reunindo várias cidades desta região." />
+	<meta name="description" content="II SESCOMP" />
 	<meta name="keywords" content="Flisol, Vale do Jaguaribe, Ceará Russas, UFC" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<!-- ==============================================
@@ -40,13 +40,13 @@ require("configuracao.php");
 	<!-- ==============================================
 	CSS
 	=============================================== -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/bootstrap.min.css" /> <!-- Twitter Bootstrap -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/bootstrap-responsive.min.css" /> <!-- Twitter Bootstrap Responsive -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/font-awesome.min.css"> <!-- Font Awesome -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/flexslider.css"> <!-- Flexslider -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/fancybox/jquery.fancybox.css"/> <!-- Fancybox -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/style.css"> <!-- Main stylesheet -->
-	<link rel="stylesheet" href="<?php echo $urlBase; ?>Sescomp/css/style-responsive.css"> <!-- Main stylesheet responsive -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/bootstrap.min.css" /> <!-- Twitter Bootstrap -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/bootstrap-responsive.min.css" /> <!-- Twitter Bootstrap Responsive -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/font-awesome.min.css"> <!-- Font Awesome -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/flexslider.css"> <!-- Flexslider -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/fancybox/jquery.fancybox.css"/> <!-- Fancybox -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/style.css"> <!-- Main stylesheet -->
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>css/style-responsive.css"> <!-- Main stylesheet responsive -->
 
 	<!--[if IE 7]>
 	  <link rel="stylesheet" href="Sescomp/css/font-awesome-ie7.min.css">

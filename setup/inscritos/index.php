@@ -4,7 +4,7 @@ require("../cabecalho.php");
 
 
 ?>
-<title>Painel - II FLISOL Vale</title>
+<title>Painel - Sescomp</title>
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" media="screen" charset="utf-8">
 	</head>
 	<body id="top" class="fixed-nav">
@@ -16,10 +16,10 @@ require("../cabecalho.php");
         <div class="row">
 
 					<div class="span12">
-						<h2 class="padding-top">Administrador <span>FLISOL Vale</span> |
+						<h2 class="padding-top">Administrador <span>Sescomp</span> |
               <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="sair.php">sair</a></small></h2>
 							<div id="apresentacao" style="margin-top:40px">
-							<h2>Seja bem vindo ao Painel do Flisol Vale 2016!</h2>
+							<h2>Seja bem vindo ao Painel do Sescomp!</h2>
 
 							</div>
 					</div>
@@ -32,7 +32,7 @@ require("../cabecalho.php");
               <table id="myTable" style="font-size:10pt">
                 <thead>
                   <tr>
-                    <th>ID</th><th>Nome/E-mail</th><th>Telefone</th><th>CPF</th><th>Cidade/UF</th><th>IES</th><th>Escolaridade</th><th>Sexo</th>
+                    <th></th><th>Nome/E-mail</th><th>Telefone</th><th>CPF</th><th>Cidade/UF</th><th>IES</th><th>Escolaridade</th><th>Sexo</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@ require("../cabecalho.php");
                   while ($part = $getParticipantes->fetchObject()) {
                   ?>
                   <tr>
-                    <td><?php echo $part->id_participante; ?></td>
+                    <td></td>
                     <td><?php echo $part->nome; ?><br/>
                     <?php echo $part->email; ?></td>
                     <td><?php echo $part->telefone1; ?></td>

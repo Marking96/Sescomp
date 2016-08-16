@@ -1,16 +1,16 @@
 <?php
 
-require("../cabecalho.php");
+require("cabecalho.php");
 require("includes/makeInput.php");
 
 if(!isset($_SESSION['idUsuario'])){
-/* Direciona para a p�gina depois de logado */
-echo '<script type="text/javascript">location = "login"</script>';
-exit;	// sai da p�gina para n exibir o restante do documento php
+/* Direciona para a p?ina depois de logado */
+echo '<script type="text/javascript">location = "login.php"</script>';
+exit;	// sai da p?ina para n exibir o restante do documento php
 
 }
 ?>
-<title>Inscri��o - II FLISOL Vale</title>
+<title>Inscrição - Sescomp</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -21,14 +21,14 @@ exit;	// sai da p�gina para n exibir o restante do documento php
         <div class="row">
 
 					<div class="span12">
-						<h2 class="padding-top">Administrador <span>FLISOL Vale</span> |
-              <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="sair.php">sair</a></small></h2>
+						<h2 class="padding-top">Administrador <span>Sescomp</span> |
+              <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="<?php echo $urlBase; ?>sair.php">sair</a></small></h2>
 							<div id="apresentacao" style="margin-top:40px">
 							<h2>Resumo das <?php
 							$getTotal = $pdo->query("SELECT count(id_participante) as total FROM participante");
 							$all = $getTotal->fetchObject();
 							echo $all->total;
-							 ?> Inscri��es</h2>
+							 ?> Inscrições</h2>
 							</div>
 					</div>
 
@@ -90,7 +90,7 @@ google.charts.load('current', {'packages':['corechart','bar']});
 
 					$countN = $pdo->query("SELECT count(id_participante) as totalN FROM participante WHERE sexo = ''");
 					$totalN = $countN->fetchObject();
-					echo "['N�o Informado', ". $totalN->totalN."]";
+					echo "['Não Informado', ". $totalN->totalN."]";
 
 					?>
         ]);

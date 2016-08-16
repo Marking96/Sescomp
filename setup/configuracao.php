@@ -3,8 +3,8 @@
 error_reporting(E_ALL & ~E_NOTICE);
 
 define(HOST, 'localhost');
-define(USER, 'root');
-define(SENHA, '');
+define(USER, 'sescomp-bd');
+define(SENHA, 'sesc-2016');
 define(BD, 'sescomp');
 
 try{
@@ -17,8 +17,8 @@ try{
 
 }
 
-$urlBase  = 'http://'.$_SERVER['SERVER_NAME'].'/setup/';
-$urlLogin  = 'http://'.$_SERVER['SERVER_NAME'].'/setup/login';
+$urlBase  = 'http://'.$_SERVER['SERVER_NAME'].'/sescomp/setup/';
+$urlLogin  = 'http://'.$_SERVER['SERVER_NAME'].'/sescomp/setup/login.php';
 
 
 ?>

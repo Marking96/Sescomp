@@ -13,7 +13,7 @@ Header
         =============================================== -->
 
         <div class="span2 text-center logo-flisolvale">
-        <a href="http://flisol.valelivre.org"><img src="http://valelivre.org/wp-content/images/flisol.png" alt="logo libreria luque"></a>
+        <a href="http://200.129.62.41/sescomp/setup"><img src="http://200.129.62.41/sescomp/images/logo.svg" alt="Ínicio"></a>
       </div>
 
 
@@ -24,13 +24,14 @@ Header
         Navigation
         =============================================== -->
 
-<?php if(isset($_SESSION['idUsuario'])){ ?>
+      <?php if(isset($_SESSION['idUsuario'])){ ?>
         <ul class="nav hidden-phone hidden-tablet">
-          <li><a href="http://localhost/Sescomp/setup/">Inicio</a></li>
-          <li><a href="http://localhost/Sescomp/setup/mapa">Mapa</a></li>
-          <li><a href="http://localhost/Sescomp/setup/palestrantes">Palestrantes</a></li>
-          <li><a href="http://localhost/Sescomp/setup/oficinas">Oficinas</a></li>
-          <li><a href="http://localhost/Sescomp/setup/inscritos">Inscritos</a></li>
+          <li><a href="<?php echo $urlBase;?>">Inicio</a></li>
+          <li><a href="<?php echo $urlBase;?>mapa">Mapa</a></li>
+          <li><a href="<?php echo $urlBase;?>palestrantes">Palestrantes</a></li>
+          <li><a href="<?php echo $urlBase;?>oficinas">Oficinas</a></li>
+          <li><a href="<?php echo $urlBase;?>inscritos">Inscritos</a></li>
+<!--	  <li><a href="<?php echo $urlBase;?>doadores">Doadores</a></li>
           <!--<li><a href="#" class="event-button">Inscrições</a></li>-->
         </ul>
         <!-- End Navigation

@@ -13,7 +13,7 @@ Header
         =============================================== -->
 
         <div class="span2 text-center logo-flisolvale">
-        <a href="http://flisol.valelivre.org"><img src="http://valelivre.org/wp-content/images/flisol.png" alt="logo libreria luque"></a>
+        <a href="http://200.129.62.41/sescomp"><img src="http://200.129.62.41/sescomp/images/logo.svg" alt="logo libreria luque"></a>
       </div>
 
 
@@ -26,13 +26,10 @@ Header
 
 
         <ul class="nav hidden-phone hidden-tablet">
-          <li><a href="<?php echo $urlBase; ?>Sescomp/#top">Inicio</a></li>
-          <!--<li><a href="#about">Jornada</a></li>-->
-          <li><a href="<?php echo $urlBase; ?>Sescomp/#programa">Programação</a></li>
-<!--      <li><a href="#workshops">Atividades</a></li>
-          <li><a href="#proposals">Palestras</a></li>-->
-          <li><a href="<?php echo $urlBase; ?>Sescomp/#donde">Local</a></li>
-          <li><a href="<?php echo $urlBase; ?>Sescomp/inscricao" class="event-button">Inscrição</a></li>
+          <li><a href="<?php echo $urlBase; ?>#top">Inicio</a></li>
+          <li><a href="<?php echo $urlBase; ?>#programa">Programação</a></li>
+          <li><a href="<?php echo $urlBase; ?>#donde">Local</a></li>
+          <li><a href="<?php echo $urlBase; ?>inscricao" class="event-button">Inscrição</a></li>
         </ul>
         <!-- End Navigation
         =============================================== -->

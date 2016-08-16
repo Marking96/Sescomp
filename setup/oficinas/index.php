@@ -54,7 +54,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 			$msg .= "<br/>". $debug[2];
 		}else{
 			$ok = true;
-			$msg = "Palestrante Cadastrado com Sucesso!";
+			$msg = "Oficina Cadastrada com Sucesso!";
 		}
 
 		}
@@ -64,7 +64,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 
 
 ?>
-<title>Inscrição - II FLISOL Vale</title>
+<title>Inscrição - Sescomp</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -75,11 +75,11 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
         <div class="row-fluid">
 
           <div class="span12" id="about">
-            <h2 class="padding-top">Administrador <span>FLISOL Vale</span> |
+            <h2 class="padding-top">Administrador <span>Sescomp</span> |
               <small><?php echo $_SESSION["nomeUsuario"] ?> - <a href="sair.php">sair</a></small></h2>
 
           <div id="apresentacao">
-          <h3>Seja bem vindo ao formulário de inscrição do Flisol Vale 2016!</h3>
+          <h3>Seja bem vindo ao formulário de inscrição do Sescomp!</h3>
 
   <div class="row-fluid">
 		<!-- Cadastro de Oficinas -->
@@ -140,7 +140,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
       </div>
 
       <?php
-			input("vagas","Vagas","input-small","vagas","00",true,$_POST["vagas"]);
+			input("vagas","Vagas","input-small","vagas","000",true,$_POST["vagas"]);
 			?>
 
       <div class="control-group">
@@ -154,8 +154,8 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 
              ?>
             <option value="<?php echo $mapa->id_mapa; ?>">
-              <?php echo $mapa->nome; ?> - <?php echo date('d/m',strtotime($mapa->dia)) ?> : <?php echo date('H:i',strtotime($mapa->inicio)) ?> : <?php echo date('H:i',strtotime($mapa->termino))?>
-            </option>
+             <?php echo $mapa->nome; ?> - <?php echo date('d/m',strtotime($mapa->dia)) ?> : <?php echo date('H:i',strtotime($mapa->inicio)) ?> : <?php echo date('H:i',strtotime($mapa->termino))?>
+             </option>
             <?php
           }
              ?>
@@ -186,8 +186,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 		</div>
 
 	</div>
-
-
+  
   </div>
 
   </div>
@@ -201,7 +200,7 @@ $mapas	= filter_input(INPUT_POST, 'mapas');
 <script type="text/javascript" src="<?php echo $urlBase; ?>js/vendor/jquery.mask.js"></script>
 <script type="text/javascript">
 
-	$('#vagas').mask('00');
+	$('#vagas').mask('000');
 
   $(".alert").alert();
 

@@ -73,7 +73,7 @@ $res = $qryUser->fetchObject();
 
 
 ?>
-<title>Inscrição - II FLISOL Vale</title>
+<title>Inscrição - Sescomp</title>
 	</head>
 	<body id="top" class="fixed-nav">
 
@@ -84,7 +84,7 @@ $res = $qryUser->fetchObject();
         <div class="row">
 
 					<div class="span12" id="about">
-						<h2 class="padding-top">Login <span>FLISOL Vale</span></h2>
+						<h2 class="padding-top">Login <span>Sescomp</span></h2>
 
 						<?php
 
@@ -97,8 +97,8 @@ $res = $qryUser->fetchObject();
 						<form class="form-horizontal" method="POST" action="">
 						<?php
 
-						input("login","Login","input-xlarge","login","thanos",true,$_POST["login"]);
-						input("senha","Senha","input-xlarge","senha","****",true,"","password");
+						input("login","Login","input-xlarge","login","usuário",true,$_POST["login"]);
+						input("senha","Senha","input-xlarge","senha","senha",true,"","password");
 
 						?>
 
@@ -113,7 +113,7 @@ $res = $qryUser->fetchObject();
       </div>
     </section>
 
-		<?php require("rodape.php"); ?>
+		<?php require("../rodape.php"); ?>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="<?php echo $urlBase; ?>js/vendor/jquery.mask.js"></script>

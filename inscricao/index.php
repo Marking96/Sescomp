@@ -5,18 +5,17 @@ require("../includes/funcoes.php");
 require("../includes/PHPMailer-master/PHPMailerAutoload.php");
 require('../includes/recaptcha-master/src/autoload.php');
 
-$secret = "6LfeUiYTAAAAAAxZoJ8izwxlLTnrI0s7pWpEF0r6";
-$siteKey = '6LfeUiYTAAAAAJvvRnRTkuRGfhgmPaT_1T4IYkmM';
-
+$secret = "6LdV0SYTAAAAAMTmk3GaZ0J3pnvdTt1PcvYM5hIV";
+$siteKey = '6LdV0SYTAAAAAJx206kKgsOgl_RyxAULZLuKQiez';
 
 $lang = 'pt-BR';
 $recaptcha = new \ReCaptcha\ReCaptcha($secret);
 $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
 //if(!isset($_SESSION['idUsuario'])){
-/* Direciona para a p�gina depois de logado */
+/* Direciona para a página depois de logado */
 //echo '<script type="text/javascript">location = "http://flisol.valelivre.org"</script>';
-//exit;	// sai da p�gina para n exibir o restante do documento php
+//exit;	// sai da página para n exibir o restante do documento php
 
 //}
 
@@ -47,24 +46,24 @@ if($qryCPF->rowCount() > 0){
 	$hasCPF = false;
 }
 
-// Verifica mapas repetidos nos hor�rios
+// Verifica mapas repetidos nos horários
 //print_r($_POST);
 
 $mapas = array();
 $choques = array();
 
-print_r($_POST);
+//print_r($_POST);
 
 foreach ($minicursos as $v) {
-	# code...
 	if($v != ''){
-
 		$qryAtividade = $pdo->query("SELECT mapeamento FROM atividades WHERE id_atividade = $v");
 		$mapeamento = $qryAtividade->fetchObject();
 		$mapaAtividade = json_decode($mapeamento->mapeamento, true);
 		foreach ($mapaAtividade as $mapa) {
 			if(!in_array($mapa, $mapas)){
-					array_push($mapas,$mapa);
+				if($mapa){
+				}
+				array_push($mapas,$mapa);
 			}else{
 				array_push($choques,$v);
 			}
@@ -76,11 +75,12 @@ foreach ($minicursos as $v) {
 
 }
 
+//Faz os testes para erros
 if (!$resp->isSuccess()) {
 	// What happens when the CAPTCHA was entered incorrectly
 $captcha = true;
 } else {
-	$captcha = true;
+	$captcha = false;
 }
 
 
@@ -92,7 +92,7 @@ $captcha = true;
 		$msg = 'Algum problema com o seu CPF';
 	}elseif($hasCPF){
 		$erro = true;
-		$msg = 'Seu CPF j� foi informado. Entre em contato com a equipe do Flisol caso exista algum erro';
+		$msg = 'Seu CPF já foi informado. Entre em contato com a equipe do Flisol caso exista algum erro';
 	}elseif($captcha){
 		$erro = true;
 		$msg = 'Confirme o captcha de forma correta';
@@ -105,10 +105,10 @@ $captcha = true;
 		$msg = 'Informe pelo menos um telefone para contato';
 	}elseif(empty($cidade) || empty($uf) || empty($cep)){
 		$erro = true;
-		$msg = 'Suas informa��es de endere�os n�o foram informadas';
+		$msg = 'Suas informações de endereços não foram informadas';
 	}elseif(count($choques)){
 		$erro = true;
-		$msg = 'Existem choques de hor�rios nas oficinas selecionadas. Confira os hor�rios.';
+		$msg = 'Existem choques de horários nas oficinas selecionadas. Confira os horários.';
 	}else{
 
 		$param = array($nome,limpaCPF_CNPJ($cpf),$email,$telefone1,$cep,
@@ -139,7 +139,7 @@ $captcha = true;
 						$qryVagas = $pdo->query("Select count(*) vagas_ocupadas FROM atividade_participante WHERE id_atividade = $v");
 						$vagas = $qryVagas->fetchObject();
 
-						$qryTotalVagas = $pdo->query("Select vagas FROM atividade WHERE id_atividade = $v");
+						$qryTotalVagas = $pdo->query("Select vagas FROM atividades WHERE id_atividade = $v");
 						$total = $qryTotalVagas->fetchObject();
 
 						$totalVagas = $total->vagas - $vagas->vagas_ocupadas;
@@ -148,9 +148,9 @@ $captcha = true;
 		$qryResposta = $pdo->prepare("INSERT INTO atividade_participante SET id_atividade=?, id_participante=?");
 		$qryResposta->execute(array($v,$ultimoId));
 
-		// Atualiza o n�mero de Vagas
+		// Atualiza o número de Vagas
 		$totalVagas--;
-		$qryUpdate = $pdo->query("UPDATE atividade SET vagas_disp = $totalVagas
+		$qryUpdate = $pdo->query("UPDATE atividades SET vagas_disp = $totalVagas
 			WHERE id_atividade = $v;");
 
 		}
@@ -172,34 +172,34 @@ $mail = new PHPMailer;
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'br14.hostgator.com.br';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'flisol@valelivre.org';                 // SMTP username
-$mail->Password = 'ciVPT3SXX,TN';                           // SMTP password
+$mail->Username = 'sescomp@onadi.org.br';                 // SMTP username
+$mail->Password = 'sesc-2016';                           // SMTP password
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;                                    // TCP port to connect to
 
-$mail->setFrom('flisol@valelivre.org', 'Flisol Vale 2016');
+$mail->setFrom('sescomp@onadi.org.br', 'II SESCOMP');
 $mail->addAddress($email, $nome);     // Add a recipient
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = "Seja bem vindo ao Flisol Vale 2016!";
+$mail->Subject = "Seja bem vindo a II SESCOMP!";
 
 // Gerando o corpo do E-mail
 $body = '<div style="font-family:sans-serif;text-align:center;">
-<img src="http://flisol.valelivre.org/images/cabecalho.jpg" alt="cabecalho" /><br/>
-<p>Parab�ns <b>'.$nome.'</b> sua inscri��o no Flisol Vale 2016 foi realizada com sucesso!</p>
+<p>'.$nome.'</b> sua pré-inscrição na II SESCOMP foi realizada com sucesso!</p>
+<p>Para cada minicurso deverá ser realizada a entrega de 1Kg de alimento não perecivél, no campus da UFC russas ou nos CAs.</p>
 <hr/>
-<h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscri��o</h3>';
+<h3 style="text-align:center;font-family:sans-serif;">Detalhes da Inscrição</h3>';
 $minicursos = array_filter($minicursos);
 if(count($minicursos)){
 
-	$body .= '<p style="padding:10px;font-family:sans-serif;">Voc� se inscreveu em '. count($minicursos) .' oficinas:</p>';
+	$body .= '<p style="padding:10px;font-family:sans-serif;">Você se inscreveu em '. count($minicursos) .' oficinas:</p>';
 	$body .= '<ul>';
 	foreach($minicursos as $v) {
 	  if($v != ''){
 
-			$getName = $pdo->query("Select titulo FROM atividade WHERE id_atividade = $v");
+			$getName = $pdo->query("Select titulo FROM atividades WHERE id_atividade = $v");
 			$minicurso = $getName->fetchObject();
-		  $body .= '<li style="font-family:sans-serif;">'. $minicurso->titulo . '</li>';
+		  $body .= '<li style="font-family:sans-serif;">'.$minicurso->titulo." ".$minicurso->descricao. '</li>';
 
 		}
 	}
@@ -207,25 +207,21 @@ if(count($minicursos)){
 }
 
   $body .= '<p style="text-align:center;font-family:sans-serif;padding:10px">
-  Não deixe de verificar os horários das atividades para não ficar perdido :D. Esperamos que aproveite o evento!</p>
-  <img src="http://flisol.valelivre.org/images/rodape.jpg" alt="cabecalho" />';
+  Não deixe de verificar os horários das atividades para não ficar perdido :D. Esperamos que aproveite o evento!</p>';
 
 $mail->Body    = $body;
-$mail->AltBody = 'Seja bem vindo ao Flisol Vale 2016! Sua inscrição foi realizada com sucesso.';
+$mail->AltBody = 'Seja bem vindo a II SESCOMP! Sua inscrição foi realizada com sucesso.';
 
 if(!$mail->send()) {
     $msg .= 'Message could not be sent.';
     $msg .= 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    $msg .= '. Sua confirmação de inscrição foi enviada para seu e-mail.';
+    $msg .= '. Sua confirmação de inscrição foi enviada para seu e-mail</br> Verifique sua caixa de spam.';
 }
 
 		}
-
-
-		}
-
 	}
+}
 
 
 ?>
@@ -241,13 +237,16 @@ if(!$mail->send()) {
         <div class="row">
 
           <div class="span12" id="about">
-            <h2 class="padding-top">Inscreva-se no <span>FLISOL Vale</span></h2>
+            <h2 class="padding-top">Inscreva-se na <span>SESCOMP</span></h2>
 
 	<div id="apresentacao">
-		<h3>Seja bem vindo ao formulário de inscrição do Flisol Vale 2016!</h3>
+		<h3>Seja bem vindo ao formulário de inscrição da SESCOMP 2016!</h3>
+		
 <p>
-	Para evitar erros durante sua inscrição esteja atento ás informações preenchidas e em caso de dúvidas entre em contato com a equipe do evento via o e-mail contato[arroba]valelivre[ponto]org. Lembrando que as informações fornecidas serão utilizadas para confecção de certificados e/ou crachás. <strong>A equipe do Flisol Vale 2016 deseja um bom proveiro das atividades!</strong>
+ Para evitar erros durante sua inscrição esteja atento às informações preenchidas e em caso de dúvidas entre em contato com a equipe do evento via o e-mail sescomp@onadi.org.br. Lembrando que as informações fornecidas serão utilizadas para confecção de certificados e/ou crachás.<strong>Para cada inscrição será necessária a entrega de 1Kg de alimento não perecível. Que deverá ser entregue aos CAs de cada curso ou no próprio campus da UFC Russas</strong>.A equipe da SESCOMP 2016 desde já um bom proveito das atividades!.
 </p>
+
+
 
 <?php
 if($ok) alert($msg,"success");
@@ -271,9 +270,7 @@ if($erro) alert($msg,"error");
 	input("cidade","Cidade","input-xxlarge uneditable-input","cidade","",false,$_POST["cidade"],'text','readonly');
 	input("uf","UF","input-mini uneditable-input","uf","",false,$_POST["uf"],'text','readonly');
 	input("nascimento","Data de Nascimento","","nascimento","DD/MM/AAAA",false,$_POST["nascimento"]);
-
 	?>
-
 	<div class="control-group">
 		<label for="escolaridade" class="control-label">Escolaridade</label>
 		<div class="controls">
@@ -292,7 +289,7 @@ if($erro) alert($msg,"error");
 		<label for="ocupacao" class="control-label">Ocupação</label>
 		<div class="controls">
 			<select size="1" name="ocupacao" id="ocupacao">
-				<option value=""></option>
+				<option value="">Não informado</option>
 				<option value="estudante">Estudante</option>
 				<option value="profissional">Profissional</option>
 				<option value="comunidade">Comunidade</option>
@@ -339,21 +336,20 @@ if($erro) alert($msg,"error");
 
 
 	<hr/>
-	<h2>Minicursos e Oficinas</h2>
+	<h2>Atividades</h2>
 
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th style="width:30%">Oficina</th>
+				<th style="width:30%">Atividades</th>
 				<th>Detalhes</th>
 				<th>Vagas</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
-			$qryAtividades = $pdo->query("SELECT * FROM atividades ORDER BY Titulo");
-			
-                        while($atividade = $qryAtividades->fetchObject()){
+			$qryAtividades = $pdo->query("SELECT * FROM atividades ORDER BY id_atividade");
+			while($atividade = $qryAtividades->fetchObject()){
 
 			 ?>
 			 <tr>
@@ -373,11 +369,10 @@ if($erro) alert($msg,"error");
 					<strong>Data e Horário:</strong>
 					<?php
 						$mapeamento = json_decode($atividade->mapeamento, true);
-                                                
-						$getHorario = $pdo->query("SELECT dia as dia,MIN(inicio) as ini,max(termino) as ter FROM mapa
+    					$getHorario = $pdo->query("SELECT dia as dia,MIN(inicio) as ini,max(termino) as ter FROM mapa
 WHERE id_mapa IN (". implode(',',$mapeamento) .");");
-						$horario = $getHorario->fetchObject();
-						echo date('d/m',strtotime($horario->dia)).' - '.  date('H:i',strtotime($horario->ini)). ' as '. date('H:i',strtotime($horario->ter));
+    					$horario = $getHorario->fetchObject();
+    					echo date('d/m',strtotime($horario->dia)).' - '.  date('H:i',strtotime($horario->ini)). ' as '. date('H:i',strtotime($horario->ter));
 					 ?>
 				</td>
 					<td style="text-align:center;font-size:12pt;color:#999">
@@ -427,10 +422,10 @@ WHERE id_mapa IN (". implode(',',$mapeamento) .");");
 		<?php require("../rodape.php"); ?>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="<?php echo $urlBase; ?>Teste/js/vendor/jquery.mask.js"></script>
-<script type="text/javascript" src="<?php echo $urlBase; ?>Teste/js/bootstrap-alert.js"></script>
-<script type="text/javascript" src="<?php echo $urlBase; ?>Teste/js/bootstrap-button.js"></script>
-<script src='https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>'>
+<script type="text/javascript" src="<?php echo $urlBase; ?>js/vendor/jquery.mask.js"></script>
+<script type="text/javascript" src="<?php echo $urlBase; ?>js/bootstrap-alert.js"></script>
+<script type="text/javascript" src="<?php echo $urlBase; ?>js/bootstrap-button.js"></script>
+<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>">
             </script>
 <script type="text/javascript">
 
@@ -498,12 +493,23 @@ $("#email").blur(function(e){
 	e.preventDefault();
 	var email = $(this).val();
 	if(testEmail != ''){
-
-			var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+		var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
 		if (testEmail.test(email)){
 
 			$(".inputEmail").addClass("success").removeClass("error");
 			$(".inputEmail .controls .help-block").remove();
+			// Passou no teste
+			// Verificar se existe no BD
+			$.ajax({
+						method:"GET",
+						url:"../consultaemail.php",
+						data:{ email: testEmail}
+				}).success(function(data){
+						if(data == "error")
+							alert("já existe");
+						else
+							$(this).toggleClass("success");
+				});
 		}else{
 			$(".inputEmail").addClass("error").removeClass("success");
 			$(".inputEmail .controls")

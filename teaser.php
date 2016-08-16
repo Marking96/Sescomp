@@ -9,8 +9,7 @@ Teaser
       Text
       =============================================== -->
       <div class="span7 offset5 text-container maintitle">
-        <h1>II Sescomp.</h1>
-        <h2>Semana de Engenharia de Software e Ciência da Computação.</h2>
+        <h1>Semana de Engenharia de Software e Ciência da Computação.</h1>
       </div>
       <!-- End Text
       =============================================== -->

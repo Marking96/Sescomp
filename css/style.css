@@ -380,7 +380,7 @@ box-shadow: 0.5pt 0.3pt 0px #858085;
 }
 
 .mobile-nav{
-margin-top:20px;
+	margin-top:10px;
 }
 
 /* ==============================================
@@ -737,9 +737,8 @@ background:#d6d6d6;
 }
 
 .logo-flisol{
-
       background:red;
-      width:300px;
+      width:100px;
       height:100px;
 
 
@@ -1051,15 +1050,15 @@ color:#2980b9;
 }
 
 .program table.quatro-colunas tbody td:first-child.column{
-width:10%;
+width:50px;
 }
 
 .program table.quatro-colunas tbody td.column{
-width:22.5%;
+width:50%;
 }
 
 .program table.tres-colunas tbody td.column{
-width:30%;
+width:0%;
 }
 
 .program table tbody tr.heading{
@@ -1424,8 +1423,8 @@ margin-bottom:10px;
 }
 
 .logo-flisolvale{
-margin-top:15px;
-width:220px;
+margin-top:-33px;
+width:120px;
 margin-bottom:10px;
 }
 

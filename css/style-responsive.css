@@ -109,7 +109,7 @@ Attraction - CSS for Mobile
 	}
 
 	.button-row {
-		height: 80px;
+		height: 40px;
 	}
 
 	.testimonials .span2,
@@ -177,11 +177,11 @@ Attraction - CSS for Mobile
  	}
 
  	.logo {
-		padding-top:24px;
+		padding-top:0px;
 	}
 
  	.mobile-nav {
- 		width: 150px;
+ 		width: 0px;
  	}	
 
  	.container {
@@ -193,7 +193,7 @@ Attraction - CSS for Mobile
 	}
 
 	.flexslider {
-		margin-bottom: 30px;
+		margin-bottom: 0px;
 	}
 
 	.teaser .flexslider,
@@ -245,14 +245,14 @@ Attraction - CSS for Mobile
 	}
 
 	.button-row {
-		height: 80px;
+		height: 50px;
 	}
 
 	.testimonials .span2,
 	.testimonials .span3,
 	.testimonials .span4,
 	.testimonials .span6 {
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 	}
 
 	.gallery .gallery-row {
