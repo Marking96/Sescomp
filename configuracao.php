@@ -3,9 +3,9 @@
 error_reporting(E_ALL & ~E_NOTICE);
 
 define(HOST, 'localhost');
-define(USER, 'sescomp-bd');
-define(SENHA, 'sesc-2016');
-define(BD, 'sescomp');
+define(USER, 'usuario');
+define(SENHA, 'senha');
+define(BD, 'banco');
 
 try{
 
