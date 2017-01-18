@@ -162,24 +162,6 @@ CREATE TABLE IF NOT EXISTS `participante` (
 -- Extraindo dados da tabela `participante`
 --
 
-INSERT INTO `participante` (`id_participante`, `nome`, `cpf`, `email`, `telefone1`, `cep`, `cidade`, `uf`, `data_nasc`, `escolaridade`, `ocupacao`, `iniciativa`, `instensino`, `sexo`, `status`, `data_cadastro`) VALUES
-(1, 'Marcelo dos Santos Estevam', '2147483647', 'marcelo.estevam15@hotmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1996-12-31', 'Superior Incompleto', 'estudante', 'publica', 'UFC', 'm', 0, '2016-08-03'),
-(2, 'Marcelo dos Santos Estevam', '60316800333', 'marcelo.estevam15@hotmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1996-12-31', 'Fundamental Incompleto', 'estudante', 'publica', 'UFC', 'm', 0, '2016-08-03'),
-(3, 'Marcelo dos Santos Estevam', '60316800333', 'marcelo.estevam15@hotmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1996-12-31', 'Fundamental Incompleto', 'estudante', 'publica', '', 'm', 0, '2016-08-03'),
-(4, 'Marcelo dos Santos Estevam', '60316800333', 'mariaivanetedossantos13@gmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1996-12-31', 'Médio Incompleto', 'estudante', 'publica', 'UFC', 'm', 0, '2016-08-03'),
-(5, 'Marcelo dos Santos Estevam', '60316800333', 'mariaivanetedossantos13@gmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1996-12-31', 'Fundamental Completo', 'profissional', 'publica', '', 'm', 0, '2016-08-03'),
-(6, 'Marcelo dos Santos Estevam', '60316800333', 'marcelo.estevam15@hotmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1996-12-31', 'Fundamental Incompleto', 'comunidade', 'publica', '', 'm', 0, '2016-08-03'),
-(7, 'M05', '93537026315', 'marcelo.estevam15@hotmail.com', '(88) 99889-9239', '62930-000', 'Limoeiro do Norte', 'CE', '1970-01-01', 'Fundamental Incompleto', 'comunidade', 'publica', '', 'm', 0, '2016-08-03'),
-(8, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Médio Completo', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(9, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Fundamental Incompleto', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(10, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Superior Completo', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(11, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Fundamental Incompleto', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(12, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Fundamental Incompleto', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(13, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Médio Incompleto', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(14, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Médio Incompleto', 'profissional', 'publica', '', 'm', 0, '2016-08-04'),
-(15, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Fundamental Completo', '', 'publica', '', 'm', 0, '2016-08-04'),
-(16, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Fundamental Incompleto', 'profissional', 'publica', '', '', 0, '2016-08-04'),
-(17, 'Mateus  Oliveira', '06850887580', 'mateusteknus@gmail.com', '(88) 99999-9999', '62900-000', 'Russas', 'CE', '1997-02-03', 'Fundamental Completo', 'profissional', 'publica', '', 'm', 0, '2016-08-04');
 
 -- --------------------------------------------------------
 
